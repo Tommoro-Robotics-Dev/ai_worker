@@ -12,27 +12,31 @@ authors_info = [
 authors = ', '.join(author for author, _ in authors_info)
 author_emails = ', '.join(email for _, email in authors_info)
 
+def cfg_files(rel):
+    return glob(os.path.join('config', rel, '*.yaml'))   # *.yaml 로 한정
+
 setup(
     name=package_name,
-    version='1.1.9',
+    version='1.1.8',
     packages=find_packages(exclude=['test']),
-    data_files=[
-        ('share/ament_index/resource_index/packages',
-            ['resource/' + package_name]),
+    data_files = [
+        ('share/ament_index/resource_index/packages', ['resource/' + package_name]),
         ('share/' + package_name, ['package.xml']),
         ('share/' + package_name + '/launch', glob('launch/*.launch.py')),
-        (os.path.join('share', package_name, 'config/ffw_bg2_rev2_follower'),
-         glob('config/ffw_bg2_rev2_follower/*')),
-        (os.path.join('share', package_name, 'config/ffw_bg2_rev3_follower'),
-         glob('config/ffw_bg2_rev3_follower/*')),
-        (os.path.join('share', package_name, 'config/ffw_bg2_rev4_follower'),
-         glob('config/ffw_bg2_rev4_follower/*')),
-        (os.path.join('share', package_name, 'config/ffw_sg2_rev1_follower'),
-         glob('config/ffw_sg2_rev1_follower/*')),
-        (os.path.join('share', package_name, 'config/ffw_lg2_leader'),
-         glob('config/ffw_lg2_leader/*')),
-        (os.path.join('share', package_name, 'config/common'), glob('config/common/*')),
-        ('share/' + package_name + '/worlds', glob('worlds/*.sdf')),
+
+        # General config files
+        (os.path.join('share', package_name, 'config/ffw_bg2_rev2_follower'), cfg_files('ffw_bg2_rev2_follower')),
+        (os.path.join('share', package_name, 'config/ffw_bg2_rev3_follower'), cfg_files('ffw_bg2_rev3_follower')),
+        (os.path.join('share', package_name, 'config/ffw_bg2_rev4_follower'), cfg_files('ffw_bg2_rev4_follower')),
+        (os.path.join('share', package_name, 'config/ffw_sg2_rev1_follower'), cfg_files('ffw_sg2_rev1_follower')),
+        (os.path.join('share', package_name, 'config/ffw_lg2_leader'),        cfg_files('ffw_lg2_leader')),
+        (os.path.join('share', package_name, 'config/common'),                cfg_files('common')),
+
+        # Poses/trajectories
+        (os.path.join('share', package_name, 'config/ffw_bg2_rev4_follower/poses'),
+            glob('config/ffw_bg2_rev4_follower/poses/*.yaml')),
+        (os.path.join('share', package_name, 'config/ffw_bg2_rev4_follower/trajectories'),
+            glob('config/ffw_bg2_rev4_follower/trajectories/*.yaml')),
     ],
     install_requires=['setuptools'],
     zip_safe=True,

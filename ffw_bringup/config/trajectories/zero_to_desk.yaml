@@ -1,0 +1,83 @@
+arm_l_joint_trajectory_executor:
+  ros__parameters:
+    joint_names:
+      - arm_l_joint1
+      - arm_l_joint2
+      - arm_l_joint3
+      - arm_l_joint4
+      - arm_l_joint5
+      - arm_l_joint6
+      - arm_l_joint7
+      - gripper_l_joint1
+
+    trajectory: |
+      - positions: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        time_from_start: 0.0
+      - positions: [-0.05, 0.2, 0.1, -0.6, 0.2, 0.0, 0.05, 0.0]
+        time_from_start: 1.5
+      - positions: [-0.1, 0.3, 0.2, -1.1, 0.3,  0.0, 0.05, 0.0]
+        time_from_start: 3.0
+
+    action_topic: "/arm_l_controller/follow_joint_trajectory"
+    joint_states_topic: "/joint_states"
+    max_goal_attempts: 5
+    goal_timeout: 5.0
+
+arm_r_joint_trajectory_executor:
+  ros__parameters:
+    joint_names:
+      - arm_r_joint1
+      - arm_r_joint2
+      - arm_r_joint3
+      - arm_r_joint4
+      - arm_r_joint5
+      - arm_r_joint6
+      - arm_r_joint7
+      - gripper_r_joint1
+
+    trajectory: |
+      - positions: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0]
+        time_from_start: 0.0
+      - positions: [-0.05, 0.2, 0.1, -0.6, 0.2, 0.0, 0.05, 0.0]
+        time_from_start: 1.5
+      - positions: [-0.1, 0.3, 0.2, -1.1, 0.3,  0.0, 0.05, 0.0]
+        time_from_start: 3.0
+
+    action_topic: "/arm_r_controller/follow_joint_trajectory"
+    joint_states_topic: "/joint_states"
+    max_goal_attempts: 5
+    goal_timeout: 5.0
+
+head_joint_trajectory_executor:
+  ros__parameters:
+    joint_names: [head_joint1, head_joint2]
+
+    trajectory: |
+      - positions: [0.0, 0.0]
+        time_from_start: 0.0
+      - positions: [0.0, 0.0]
+        time_from_start: 1.5
+      - positions: [0.0, 0.0]
+        time_from_start: 3.0
+
+    action_topic: "/head_controller/follow_joint_trajectory"
+    joint_states_topic: "/joint_states"
+    max_goal_attempts: 5
+    goal_timeout: 5.0
+
+lift_joint_trajectory_executor:
+  ros__parameters:
+    joint_names: [lift_joint]
+
+    trajectory: |
+      - positions: [0.0]
+        time_from_start: 0.0
+      - positions: [-0.03]
+        time_from_start: 1.5
+      - positions: [-0.08]
+        time_from_start: 3.0
+
+    action_topic: "/lift_controller/follow_joint_trajectory"
+    joint_states_topic: "/joint_states"
+    max_goal_attempts: 5
+    goal_timeout: 5.0
