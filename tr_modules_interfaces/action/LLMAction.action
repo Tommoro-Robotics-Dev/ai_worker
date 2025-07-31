@@ -1,0 +1,8 @@
+# Goal
+string prompt
+---
+# Result
+string reply
+---
+# Feedback
+string partial_reply
